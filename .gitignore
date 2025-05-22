@@ -3,4 +3,3 @@ dist
 .env
 src/public/uploads*
 public/uploads*
-package*.json
