@@ -2,21 +2,12 @@ version: '3.8'
 
 services:
   app:
-    build: .
+    container_name: backend-project
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file:
+      - .env
     ports:
-      - "8002:8002"
-    environment:
-      - DB_URI=mongodb+srv://larrycapasso:LDMeQlJCAeh0vMgQ@cluster0.5ethk2k.mongodb.net/todo
-      - PORT=8002
-      - API_PREFIX=/api/v1
-      - JWT_SECRET=7d59a0c0f98fa16b41a4ab0089e7a1b2c8262f5268509ba7ed9ee4754e3551e0
-      - EXPIRES_IN=30d
-    depends_on:
-      - mongo
-    volumes:
-      - ./public/uploads:/usr/src/app/public/uploads
-    restart: unless-stopped
-
-
-volumes:
-  mongodb_data:
+      - "${PORT}:${PORT}"
+    
